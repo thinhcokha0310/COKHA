@@ -1,0 +1,87 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package automation_cokha;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+/**
+ *
+ * @author jaykha
+ */
+public class Car {
+
+    /**
+     * @param args the command line arguments
+     */
+    int wheels = 4;
+    int doors = 4;
+    int seats = 4; 
+    int maxSpeed;
+
+    public Car(int a, int b, int c) {
+         wheels = a;
+         doors = b;
+         seats = c;
+    }
+    
+    void run(int maxSpeed) throws InterruptedException {
+        System.out.println("Car 1 can run with the Speed of: " +maxSpeed); 
+        
+        Thread.sleep(100);
+        
+        System.out.println("Car 2 can run with the Speed of: " +maxSpeed); 
+    }
+    public static void main(String[] args) throws InterruptedException {
+        // TODO code application logic here
+        Car car1 = new Car (4, 4, 4);
+        car1.run(100);
+        
+        Car car2 = new Car (4,4,4);
+        car2.run(200);
+        
+    }
+    
+//    class Toyota extends Car {
+//        public Toyota (int a, int b, int c) {
+//            super(a,b,c);
+//        }
+//    }
+    class Toyota implements Runnable {
+        public int maxSpeed = 0;    
+        @Override
+        public void run() {
+            try { 
+                System.out.println("Car 1" + maxSpeed++);
+                Thread.sleep(1000);
+                        } catch (InterruptedException ex) {
+                Logger.getLogger(Car.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+    }
+    
+    class BMW implements Runnable {
+        public int maxSqeed = 0;    
+        @Override
+        public void run() {
+            try { 
+                System.out.println("Car 2" + maxSpeed++);
+                Thread.sleep(1000);
+                        } catch (InterruptedException ex) {
+                Logger.getLogger(Car.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+    }
+//    class BMW extends Car {
+//        
+//        public BMW(int a, int b, int c) {
+//            super(a, b, c);
+//        }
+//        
+    }
+    
